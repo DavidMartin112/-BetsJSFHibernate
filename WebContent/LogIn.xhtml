@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+	<h:head>
+		<title>Bets22</title>
+		<h:outputStylesheet library="css" name="style.css" />
+	</h:head>
+	<h:body>
+	<div class="inputbox">
+	<div class="center">
+		<h1>LOGIN</h1>
+		<h:form>
+			<div class="inputbox">
+				<h:inputText id="izen" value="#{loginBean.izena}"></h:inputText>
+				<span>Izena:</span>
+			</div>
+			<div class="inputbox">
+				<h:inputSecret id="pass" redisplay="true" value="#{loginBean.pasahitza}">
+				<f:ajax execute="pass" render="mezuak" /></h:inputSecret>
+				<span>Pasahitza:</span>
+			</div>
+			<div class="inputbox"><div class="link">
+				<h:commandButton value="Kontua sortzeko hemen klikatu" action="register"/>
+			</div></div>
+			<div class="inputbox">
+				<h:commandButton value="Login" action="#{loginBean.egiaztatu}" />
+			</div>
+		</h:form>
+		<h:messages id="mezuak" style="color:red"/>
+	</div>
+	</div>
+	</h:body>
+</f:view>
+</html>

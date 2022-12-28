@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Bets22</title>
+		<h:outputStylesheet library="css" name="style.css" />
+	</h:head>
+	<h:body>
+		<div class="inputbox">
+			<div class="center">
+				<h1>Register</h1>
+				<h:messages id="mezuak" style="color:red" />
+				<h:form>
+					<div class="inputbox">
+						<h:inputText id="erabizen" value="#{registerBean.erabiltzaileIzena}" required="true"
+				requiredMessage="Erabiltzaile izena beharrezkoa da"></h:inputText>
+						<span>Erabiltzaile Izena:</span>
+					</div>
+						<div class="inputbox">
+							<h:inputSecret id="pass" redisplay="true"
+								value="#{registerBean.pasahitza}" required="true"
+				requiredMessage="Pasahitza beharrezkoa da">
+							</h:inputSecret>
+							<span>Pasahitza:</span>
+						</div>
+						<div class="inputbox">
+							<h:inputSecret id="passrep" redisplay="true"
+								value="#{registerBean.errepass}" required="true"
+				requiredMessage="Pasahitza errepikatzea beharrezkoa da">
+								<f:ajax execute="passrep" render="mezuak" />
+							</h:inputSecret>
+							<span>Errepikatu pasahitza:</span>
+						</div>
+					<div class="inputbox">
+						<h:inputText id="izen" value="#{registerBean.izena}" required="true"
+				requiredMessage="Izena beharrezkoa da"></h:inputText>
+						<span>Izena:</span>
+					</div>
+					<div class="inputbox">
+						<h:inputText id="abizen" value="#{registerBean.abizena1}" required="true"
+				requiredMessage="Lehen abizena beharrezkoa da"></h:inputText>
+						<span>1.Abizena:</span>
+					</div>
+					<div class="inputbox">
+						<h:inputText id="abizen2" value="#{registerBean.abizena2}" required="true"
+				requiredMessage="Bigarren abizena beharrezkoa da"></h:inputText>
+						<span>2.Abizena:</span>
+					</div>
+					<div class="inputbox">
+						<h:inputText id="telf" value="#{registerBean.telefonoZbkia}" required="true"
+				requiredMessage="Telefono zenbakia beharrezkoa da"></h:inputText>
+						<span>Telf. Zenbakia:</span>
+					</div>
+					<div class="inputbox">
+						<h:inputText id="email" value="#{registerBean.email}" required="true"
+				requiredMessage="Emaila beharrezkoa da"></h:inputText>
+						<span>Email:</span>
+					</div>
+					<div class="inputbox">
+						<div class="datePicker">
+							<p:calendar id="data" value="#{registerBean.jaiotzeData}"
+								navigator="true" mode="inline" required="true"
+				requiredMessage="Jaiotzed-data beharrezkoa da">
+							</p:calendar>
+						</div>
+					</div>
+					<div class="inputbox">
+						<div class="link" style="margin-top: 200px">
+							<h:commandButton value="Kontua daukazu hemen klikatu"
+								action="login" immediate="true"/>
+						</div>
+					</div>
+					<div class="inputbox">
+						<h:commandButton value="Register" action="#{registerBean.erregistratu}" />
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</h:body>
+</f:view>
+</html>

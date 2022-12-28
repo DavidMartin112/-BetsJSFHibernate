@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Bets22</title>
+		<h:outputStylesheet library="css" name="style.css" />
+	</h:head>
+	<h:body>
+		<div class="inputbox">
+			<div class="center">
+				<h1>Query questions:</h1>
+				<h:form id="nireForm">
+					<div class="inputbox">
+						<div class="datePicker">
+							<p:calendar id="data" value="#{queryQuestionBean.data}"
+								navigator="true" mode="inline">
+								<p:ajax event="dateSelect"
+									listener="#{queryQuestionBean.onDateSelect}" update="taulaPF"></p:ajax>
+							</p:calendar>
+						</div>
+					</div>
+					<h4>Eventuak:</h4>
+					<div class="taula">
+						<p:dataTable id="taulaPF" value="#{queryQuestionBean.eventuak}"
+							var="item" selectionMode="single"
+							selection="#{queryQuestionBean.event}" border="1"
+							rowKey="#{item.eventNumber}">
+							<p:ajax event="rowSelect"
+								listener="#{queryQuestionBean.onEventSelect}"
+								update=":nireForm:taulaPFQ"></p:ajax>
+							<f:facet name="header">Events:</f:facet>
+							<p:column headerText="Event Number">#{item.eventNumber}</p:column>
+							<p:column headerText="Event">#{item.description}</p:column>
+						</p:dataTable>
+					</div>
+					<div class="inputbox" style="margin-top:10px">
+						<h:commandButton id="deleteEvent" value="Delete" action="#{queryQuestionBean.deleteEvent}">
+						<f:ajax execute="nireForm" render="taulaPF taulaPFQ"/>
+						</h:commandButton>
+					</div>
+					
+					<h4 style="margin-top: 20px">Galderak:</h4>
+					<div class="taula">
+						<p:dataTable id="taulaPFQ" value="#{queryQuestionBean.questions}"
+							var="q" selectionMode="single"
+							selection="#{queryQuestionBean.question}" border="1"
+							rowKey="#{q.questionNumber}">
+							<p:ajax event="rowSelect"
+								listener="#{queryQuestionBean.onQuestionSelect}"></p:ajax>
+							<f:facet name="header">Questions:</f:facet>
+							<p:column headerText="Question Number">#{q.questionNumber}</p:column>
+							<p:column headerText="Question">#{q.question}</p:column>
+						</p:dataTable>
+
+					</div>
+					<div class="inputbox" style="margin-top:10px">
+						<h:commandButton id="delete" value="Delete" action="#{queryQuestionBean.deleteQuestion}">
+						<f:ajax execute="nireForm" render="taulaPF taulaPFQ"/>
+						</h:commandButton>
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</h:body>
+</f:view>
+</html>
